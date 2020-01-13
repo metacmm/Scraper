@@ -1,0 +1,58 @@
+<div class="wrapper-vertical">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#">NYTimes</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <div class="container-fliud">
+            <header class="masthead">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center">
+                            <h1 class="font-weight-light">Vertically Centered Masthead Content</h1>
+                            <p class="lead">A great starter layout for a landing page</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+                <button type="button" id="btn-RefreshAll" class="btn btn-info">
+                    <span>Refresh All</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="wrapper-horizontal center-block">
+            <ul>
+                {{#each articles}}
+                    {{> article-block}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
+</div>

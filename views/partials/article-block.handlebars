@@ -1,0 +1,38 @@
+<li>
+    <div class="border border-light p-2">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{this.title}}</h5>
+            <small>
+                <div>
+                    <span class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </div>
+
+            </small>
+        </div>
+        <a href={{link}}>{{link}}</a>
+        <p class="mb-1">{{abstract}}</p>
+
+        <div class="panel panel-default">
+            <div class="panel-heading active" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+
+                        notes
+
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <form>
+                        <input>
+                        <button>add</button>
+                    </form>
+                    <div>content</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</li>

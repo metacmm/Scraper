@@ -21,7 +21,8 @@ var ArticleSchema = new Schema({
         required: true
     },
     site:{
-        type: Schema.Types.ObjectId
+        type:String,
+        required:false
     },
     notes:[{
         type: Schema.Types.ObjectId,

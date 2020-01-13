@@ -13,6 +13,6 @@ var SiteSchema = new Schema({
     }
 });
 
-var Site = mongoose.model("Site", NoteSchema);
+var Site = mongoose.model("Site", SiteSchema);
 
 module.exports = Site;
