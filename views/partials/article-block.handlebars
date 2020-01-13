@@ -11,25 +11,25 @@
         </div>
         <a href={{link}}>{{link}}</a>
         <p class="mb-1">{{abstract}}</p>
+        <form class=".create-form" data-id={{_id}}>
+            <textarea class="form-control" data-id={{_id}}></textarea>
+            <button type="submit" data-id={{_id}}>add</button>
 
+        </form>
         <div class="panel panel-default">
-            <div class="panel-heading active" role="tab" id="headingOne">
+            <div class="panel-heading active" role="tab" id={{panelHeading}}>
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                        aria-expanded="true" aria-controls="collapseOne">
-
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href={{collapseIdRef}}
+                        aria-expanded="true" aria-controls={{collapseId}}>
                         notes
-
                     </a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div id={{collapseId}} class="panel-collapse collapse in" role="tabpanel" aria-labelledby={{panelHeading}}>
                 <div class="panel-body">
-                    <form>
-                        <input>
-                        <button>add</button>
-                    </form>
-                    <div>content</div>
+                    {{#note}}
+                    {{> note-block}}
+                    {{/note}}
                 </div>
             </div>
         </div>

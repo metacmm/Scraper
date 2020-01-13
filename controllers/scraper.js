@@ -11,10 +11,16 @@ var db = require("../models");
 router.get("/", function(req, res){
     db.Article.find({})
     .then(function(dbArticle){
+        var articles = [];
+        for (var i = 0; i < dbArticle.length; i++){
+            articles.push(dbArticle[i]);
+            articles[i].collapseId = "collapse" + articles[i]._id;
+            articles[i].collapseIdRef = "#" + articles[i].collapseId;
+            articles[i].panelHeading = "heading" + articles[i]._id;
+        }
         var hbsObject = {
-            articles:dbArticle
+            articles:articles
         };
-        console.log(hbsObject.articles);
         res.render("index",hbsObject);
     })
     .catch(function(err){
@@ -32,7 +38,21 @@ router.get("/articles/:id", function (req, res) {
 });
 
 router.post("/articles/:id", function (req, res) {
+    console.log(req.body);
     //create new note and update articles
+    db.Note.create({body: req.body})
+    .then(function(dbNote){
+        db.Article.findOneAndUpdate(
+            {_id: req.params.id}, 
+            {$push: {note: dbNote._id}},
+            {new:true});
+    })
+    .then(function(dbArticle){
+        res.status(200).end();
+    })
+    .catch(function(err){
+        console.log(err);
+    });
 });
 
 var scrapeEchoJs = function (res) {
@@ -52,7 +72,6 @@ var scrapeEchoJs = function (res) {
                 .children("a")
                 .attr("href");
 
-            //todo - add site
             insertToAriticle(res, result);
         });
 
