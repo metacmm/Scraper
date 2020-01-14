@@ -1,11 +1,15 @@
 $(function() {
+    // refresh the scrape lists
     $("#btn-RefreshAll").on("click", function () {
-        $.ajax("/scraper", {
+        $.ajax("/scrape", {
             type: "GET",
         }).then(function () {
+            location.reload();
             console.log("Refresh scrape list");
         });
     });
+
+    //add notes
     $("body").on("submit", ".create-form",function(event){
         event.preventDefault();
         var id = $(this).data("id");

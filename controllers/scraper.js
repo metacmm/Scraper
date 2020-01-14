@@ -9,7 +9,8 @@ var cheerio = require("cheerio");
 var db = require("../models");
 
 router.get("/", function (req, res) {
-    db.Article.find({})
+    db.Article.find({}, {}, {limit:10})
+    .sort({createdon: -1})
     .populate("notes")
         .then(function (dbArticle) {
             var articles = [];
@@ -30,17 +31,13 @@ router.get("/", function (req, res) {
         });
 });
 
-router.post("/scrape", function (req, res) {
-    //find site link and update ui, insert link to db
+//find site link and update ui, insert link to db
+router.get("/scrape", function (req, res) {
     scrapeEchoJs(res);
 });
 
-router.get("/articles/:id", function (req, res) {
-    //list all notes binding with the articles
-});
-
-router.post("/articles/:id", function (req, res) {
-    //create new note and update articles
+//create new note and update articles
+router.post("/articles/:id", function (req, res) {  
     db.Note.create(req.body)
         .then(function (dbNote) {
             db.Article.findOneAndUpdate(
@@ -84,7 +81,6 @@ var insertToAriticle = function (res, data) {
     db.Article.create(data)
         .then(function (dbArticle) {
             console.log(dbArticle);
-
             res.status(200).end();
         })
         .catch(function (err) {
