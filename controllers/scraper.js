@@ -10,6 +10,7 @@ var db = require("../models");
 
 router.get("/", function (req, res) {
     db.Article.find({})
+    .populate("notes")
         .then(function (dbArticle) {
             var articles = [];
             for (var i = 0; i < dbArticle.length; i++) {
@@ -21,6 +22,7 @@ router.get("/", function (req, res) {
             var hbsObject = {
                 articles: articles
             };
+            console.log(articles);
             res.render("index", hbsObject);
         })
         .catch(function (err) {
