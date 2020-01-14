@@ -7,13 +7,16 @@ $(function() {
         });
     });
     $("body").on("submit", ".create-form",function(event){
-        console.log("call submit");
         event.preventDefault();
         var id = $(this).data("id");
-        console.log(id);
+        var notebody = $(this).children("textarea").val().trim();
+        console.log(notebody);
+        var noteObj = {
+            body: notebody
+        }
         $.ajax("/articles/" + id, {
             type: "POST",
-            data: $(this).val().trim()
+            data: noteObj
         })
         .then(function(){
             location.reload();

@@ -8,24 +8,24 @@ var cheerio = require("cheerio");
 
 var db = require("../models");
 
-router.get("/", function(req, res){
+router.get("/", function (req, res) {
     db.Article.find({})
-    .then(function(dbArticle){
-        var articles = [];
-        for (var i = 0; i < dbArticle.length; i++){
-            articles.push(dbArticle[i]);
-            articles[i].collapseId = "collapse" + articles[i]._id;
-            articles[i].collapseIdRef = "#" + articles[i].collapseId;
-            articles[i].panelHeading = "heading" + articles[i]._id;
-        }
-        var hbsObject = {
-            articles:articles
-        };
-        res.render("index",hbsObject);
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+        .then(function (dbArticle) {
+            var articles = [];
+            for (var i = 0; i < dbArticle.length; i++) {
+                articles.push(dbArticle[i]);
+                articles[i].collapseId = "collapse" + articles[i]._id;
+                articles[i].collapseIdRef = "#" + articles[i].collapseId;
+                articles[i].panelHeading = "heading" + articles[i]._id;
+            }
+            var hbsObject = {
+                articles: articles
+            };
+            res.render("index", hbsObject);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 });
 
 router.post("/scrape", function (req, res) {
@@ -38,21 +38,21 @@ router.get("/articles/:id", function (req, res) {
 });
 
 router.post("/articles/:id", function (req, res) {
-    console.log(req.body);
     //create new note and update articles
-    db.Note.create({body: req.body})
-    .then(function(dbNote){
-        db.Article.findOneAndUpdate(
-            {_id: req.params.id}, 
-            {$push: {note: dbNote._id}},
-            {new:true});
-    })
-    .then(function(dbArticle){
-        res.status(200).end();
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+    db.Note.create(req.body)
+        .then(function (dbNote) {
+            db.Article.findOneAndUpdate(
+                { _id: req.params.id },
+                { $push: { notes: dbNote._id } },
+                { new: true })
+                .then(function(dbArticle){
+                    console.log(dbArticle);
+                    res.status(200).end();
+                })
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 });
 
 var scrapeEchoJs = function (res) {
