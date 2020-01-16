@@ -26,4 +26,14 @@ $(function() {
             location.reload();
         });
     });
+
+    $(".deletenote").on("click", function(){
+        var id = $(this).data("id");
+        $.ajax("/note/" + id, {
+            type: "GET"
+        }).then(function(){
+            location.reload();
+            console.log("Delete note " + id);
+        });
+    })
 });

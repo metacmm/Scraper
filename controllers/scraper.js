@@ -51,7 +51,20 @@ router.post("/articles/:id", function (req, res) {
         })
         .catch(function (err) {
             console.log(err);
+            res.status(500).end();
         });
+});
+
+router.get("/note/:id", function(req, res){
+    db.Note.deleteOne({_id: req.params.id})
+    .then(function(data){
+        console.log(data.deletedCount + "is deleted");
+        res.status(200).end();
+    })
+    .catch(function(err){
+        console.log(err);
+        res.status(500).end();
+    });
 });
 
 var scrapeEchoJs = function (res) {
