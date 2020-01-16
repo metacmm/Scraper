@@ -27,6 +27,7 @@ $(function() {
         });
     });
 
+    //delete note
     $(".deletenote").on("click", function(){
         var id = $(this).data("id");
         $.ajax("/note/" + id, {
@@ -35,5 +36,19 @@ $(function() {
             location.reload();
             console.log("Delete note " + id);
         });
-    })
+    });
+
+    //toggle favorite
+    $(".checkfavorite").on("change", function(){
+        var id = $(this).data("id");
+        console.log(id);
+        var checked = $(this).is(":checked");
+        console.log(checked);
+        $.ajax("/favorite/" + id, {
+            type: "POST",
+            data: {favorite: checked}
+        }).then(function(){
+            console.log("Favorite changed to " + checked);
+        });
+    });
 });

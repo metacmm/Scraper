@@ -67,6 +67,18 @@ router.get("/note/:id", function(req, res){
     });
 });
 
+router.post("/favorite/:id", function(req, res){
+    db.Article.update({_id: req.params.id}, req.body, function(err, data){
+        if (err){
+            console.log(err);
+            res.status(500).end();
+        } else {
+            console.log("favorit of " + req.params.id + " changed to " + req.body.favorite);
+            res.status(200).end();
+        }
+    });
+});
+
 var scrapeEchoJs = function (res) {
     axios.get("http://www.echojs.com/").then(function (response) {
         var $ = cheerio.load(response.data);

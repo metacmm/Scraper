@@ -189,10 +189,64 @@ a.article:hover {
   /* ---------------------------------------------------
     Favorite button
 ----------------------------------------------------- */
+/*
 .star {
     font-size: 25px;
       color:gold;
   }
+  
+  .glyphicon:before {
+    visibility: visible;
+   }
+   
+   .glyphicon.glyphicon-star-empty:checked:before {
+      content: "\e006";
+   }
+   
+   input[type=checkbox].glyphicon{
+       visibility: hidden;
+   }
+   */
+   label {
+    /* Presentation */
+    font-size: 24px;
+  }
+
+label input[type="checkbox"] {
+    display: none;
+  }
+  
+  .custom-checkbox {
+    margin-left: 2em;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox .glyphicon {
+    color: gold;
+    position: absolute;
+    top: 0.4em;
+    left: -1.25em;
+    font-size: 0.75em;
+  }
+  
+  .custom-checkbox .glyphicon-star-empty {
+    color: gray;
+  }
+  
+  .custom-checkbox .glyphicon-star {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .custom-checkbox:hover .glyphicon-star{
+    opacity: 0.5;
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
+    opacity: 1;
+  }
+   
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
