@@ -24,7 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/scraper", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/scraper.js");
