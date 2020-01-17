@@ -4,7 +4,7 @@ $(function() {
         $.ajax("/scrape", {
             type: "GET",
         }).then(function () {
-            location.reload();
+            window.location.replace("/");
             console.log("Refresh scrape list");
         });
     });
@@ -49,6 +49,16 @@ $(function() {
             data: {favorite: checked}
         }).then(function(){
             console.log("Favorite changed to " + checked);
+        });
+    });
+
+    //view all favorites
+    $("#btn-GetFavorite").on("click", function(){
+        $.ajax("/favorite", {
+            type: "GET"
+        }).then(function(){
+            console.log("View favorites");
+            window.location.replace("/favorite");
         });
     });
 });
