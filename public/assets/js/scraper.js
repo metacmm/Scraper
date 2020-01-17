@@ -4,7 +4,7 @@ $(function() {
         $.ajax("/scrape", {
             type: "GET",
         }).then(function () {
-            location.reload();
+            window.location.replace("/");
             console.log("Refresh scrape list");
         });
     });
