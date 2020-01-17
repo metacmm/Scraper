@@ -1,7 +1,7 @@
 <li>
     <div class="border border-light p-2">
         <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{this.title}}</h5>
+            <h4 class="mb-1">{{this.title}}</h5>
             <small>
                 <div>
                     <!--input type="checkbox" data-id={{_id}} class="star glyphicon glyphicon-star-empty"-->
@@ -12,14 +12,13 @@
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
                 </div>
-
             </small>
         </div>
-        <a href={{link}}>{{link}}</a>
+        <button class="btn-link"><a href={{link}}>{{link}}</a></button>
         <p class="mb-1">{{abstract}}</p>
         <form class="create-form" data-id={{_id}}>
             <textarea class="form-control" data-id={{_id}}></textarea>
-            <button type="submit" data-id={{_id}}>add</button>
+            <button type="submit" class="btn btn-outline-info my-2" data-id={{_id}}>add note</button>
         </form>
         <div class="panel panel-default">
             <div class="panel-heading active" role="tab" id={{panelHeading}}>
