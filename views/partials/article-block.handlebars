@@ -7,7 +7,7 @@
                     <!--input type="checkbox" data-id={{_id}} class="star glyphicon glyphicon-star-empty"-->
                     <!--span class="star glyphicon glyphicon-star-empty" aria-hidden="true"></span-->
                     <label for={{_id}} class="custom-checkbox">
-                        <input type="checkbox" class="checkfavorite" id={{_id}} data-id={{_id}} checked={{favorite}}/>
+                        <input type="checkbox" class="checkfavorite" id={{_id}} data-id={{_id}} {{#if favorite}}checked{{/if}}/>
                         <i class="glyphicon glyphicon-star-empty"></i>
                         <i class="glyphicon glyphicon-star"></i>
                     </label>
