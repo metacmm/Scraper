@@ -4,7 +4,7 @@ $(function() {
         $.ajax("/scrape", {
             type: "GET",
         }).then(function () {
-            window.location.replace("/");
+            location.reload();
             console.log("Refresh scrape list");
         });
     });
@@ -58,7 +58,7 @@ $(function() {
             type: "GET"
         }).then(function(){
             console.log("View favorites");
-            window.location.replace("/favorite");
+            //window.location.replace("/favorite");
         });
     });
 });
